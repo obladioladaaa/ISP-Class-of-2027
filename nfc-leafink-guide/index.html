@@ -152,6 +152,31 @@ body {
 }
 .tribute-foot .dot { color: var(--accent); }
 
+/* 原理介绍 */
+.principle-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.principle-img {
+  background: var(--card); border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+}
+.principle-img img { width: 100%; height: auto; border-radius: var(--radius-sm); display: block; }
+.principle-text p { font-size: 15px; color: var(--text-mid); line-height: 1.9; margin-bottom: 14px; }
+.principle-text p:last-child { margin-bottom: 0; }
+.principle-text strong { color: var(--primary); font-weight: 600; }
+
+/* 全流程截图 */
+.flow-screenshot {
+  margin-top: 48px; text-align: center;
+}
+.flow-screenshot img {
+  max-width: 100%; height: auto; border-radius: var(--radius);
+  box-shadow: var(--shadow-md); border: 1px solid var(--border);
+}
+.flow-caption {
+  margin-top: 14px; font-size: 13px; color: var(--text-light);
+}
+
 /* 步骤 */
 .steps-wrap { position: relative; max-width: 720px; margin: 0 auto; }
 .steps-wrap::before {
@@ -197,6 +222,7 @@ body {
   .hero-visual { min-height: 280px; order: -1; }
   .leaf-ripple { width: 260px; height: 260px; }
   .story-grid { grid-template-columns: 1fr; gap: 32px; }
+  .principle-grid { grid-template-columns: 1fr; gap: 32px; }
   .nav { padding: 14px 20px; }
   .nav a.nav-link { display: none; }
   .section { padding: 56px 20px; }
@@ -230,7 +256,7 @@ body {
   <div class="hero-inner">
     <div>
       <h1>NFC <span class="accent">LeafLink</span></h1>
-      <p>用 NFC Tools 手机 App，几分钟内将卡片烧录为任意网址。以下是完整操作步骤。</p>
+      <p>用 NFC Tools 手机 App，将卡片烧录为你想要的网址。以下是完整操作步骤。</p>
       <a href="#steps" class="btn btn-primary">查看烧录步骤</a>
     </div>
     <div class="hero-visual">
@@ -258,7 +284,7 @@ body {
       <div class="story-text">
         <div class="section-tag">About</div>
         <h2 class="section-title">关于 LeafLink</h2>
-        <p>NFC LeafLink 由整合科学 23 级同学设计，BrightMoon、Minor_song、胡萝卜共同完成。原本计划作为本届毕业纪念品，后来希望能成为整合科学各级同学的电子名片，支持个性定制主页。</p>
+        <p>NFC LeafLink 由整合科学 23 级同学设计，BrightMoon、Minor_song、胡萝卜共同完成。最初计划作为本届的毕业纪念品，后来我们希望能够拓展它的用途，成为整合科学各级同学自己的电子名片，展示个人主页的窗口。</p>
         <p class="thanks">感谢每一位支持 LeafLink 的你。</p>
       </div>
       <div class="tribute-card">
@@ -283,13 +309,33 @@ body {
   </div>
 </section>
 
+<!-- 原理介绍 -->
+<section class="section">
+  <div class="section-inner">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">NFC 是怎么工作的？</h2>
+    </div>
+    <div class="principle-grid">
+      <div class="principle-img">
+        <img src="https://aka.doubaocdn.com/s/IlCUZnN5mq" alt="NFC 工作原理示意图">
+      </div>
+      <div class="principle-text">
+        <p>NFC 卡片本身<strong>没有电池</strong>。当手机靠近时，手机发出的电磁场会为卡片供电（Energy harvesting），卡片内部的芯片和天线由此被唤醒。</p>
+        <p>你写入的网址存储在卡片的 <strong>EEPROM</strong> 中——这是一种断电不丢失数据的存储介质，可以反复擦写约十万次。</p>
+        <p>读取时，手机通过 <strong>ISO/IEC 14443</strong> 协议与卡片通信，读取其中的数据，识别出网址后自动打开浏览器。整个过程无需配对、无需网络，轻触即达。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 烧录步骤（合并版） -->
 <section class="section" id="steps">
   <div class="section-inner">
     <div style="text-align: center; margin-bottom: 48px;">
       <div class="section-tag">Tutorial</div>
       <h2 class="section-title">烧录步骤</h2>
-      <p style="font-size: 15px; color: var(--text-mid); max-width: 500px; margin: 0 auto;">全程约 2-3 分钟，每步附中英文界面标注。</p>
+      <p style="font-size: 15px; color: var(--text-mid); max-width: 500px; margin: 0 auto;">全程约 2-3 分钟。</p>
     </div>
     <div class="steps-wrap">
 
@@ -297,7 +343,7 @@ body {
         <div class="step-num">1</div>
         <div class="step-body">
           <h3>下载并打开 NFC Tools<span class="en">Download &amp; Open</span></h3>
-          <p>在 App Store 或安卓应用商店搜索「NFC Tools」并安装（免费）。打开应用，首次使用时允许 NFC 权限。</p>
+          <p>在 App Store 或安卓应用商店搜索「NFC Tools」并安装。打开应用，首次使用时允许 NFC 权限。</p>
         </div>
       </div>
 
@@ -339,6 +385,12 @@ body {
           <h3>点击「写」并贴近卡片<span class="en">Write &amp; Tap</span></h3>
           <p>点击「写」（Write），将 LeafLink 卡片贴近手机背面 NFC 感应区，保持不动直至出现「写入成功」提示。</p>
         </div>
+      </div>
+
+      <!-- 全流程截图 -->
+      <div class="flow-screenshot">
+        <img src="https://aka.doubaocdn.com/s/VTfW2kiRM3" alt="iOS 端烧录全流程截图：App Store 下载 → NFC Tools 首页 → 添加记录选择类型">
+        <p class="flow-caption">全流程一览（以 iOS 端为例）</p>
       </div>
 
     </div>
